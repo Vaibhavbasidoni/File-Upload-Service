@@ -35,7 +35,7 @@ file-upload-service
 
 1. Clone the repository:
    ```
-   git clone https://github.com/Vaibhavbasidoni/File-Upload-Service.git
+   git clone <repository-url>
    cd file-upload-service
    ```
 
@@ -57,9 +57,52 @@ file-upload-service
    ```
 
 2. API Endpoints:
-   - **Upload File**: `POST /api/files/upload`
-   - **Download File**: `GET /api/files/download/:id`
-   - **Delete File**: `DELETE /api/files/delete/:id`
+
+   ### File Upload Endpoint
+   - **Endpoint**: `POST /api/files/upload`
+   - **Description**: Upload a file to the server.
+   - **Headers**: `Content-Type: multipart/form-data`
+   - **Body**:
+     ```
+     file: The file to upload (use form-data in Postman).
+     ```
+   - **Response**:
+     ```json
+     {
+       "message": "File uploaded successfully.",
+       "file": {
+         "_id": "676ad52bf78421590c4933b7",
+         "filename": "Picture2.png",
+         "fileSize": 363889,
+         "fileType": "image/png",
+         "uploadTimestamp": "2024-12-24T15:37:15.604Z",
+         "__v": 0
+       }
+     }
+     ```
+
+   ### File Download Endpoint
+   - **Endpoint**: `GET /api/files/download/:filename`
+   - **Description**: Download a file from the server.
+   - **URL Parameters**:
+     ```
+     :filename: The name of the file to download.
+     ```
+   - **Response**: The file will be downloaded with its original filename.
+
+   ### File Deletion Endpoint
+   - **Endpoint**: `DELETE /api/files/delete/:filename`
+   - **Description**: Delete a file from the server and the database.
+   - **URL Parameters**:
+     ```
+     :filename: The name of the file to delete.
+     ```
+   - **Response**:
+     ```json
+     {
+       "message": "File deleted successfully."
+     }
+     ```
 
 ## Contributing
 
@@ -68,3 +111,4 @@ Feel free to submit issues or pull requests for improvements or bug fixes.
 ## License
 
 This project is licensed under the MIT License.
+
